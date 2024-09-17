@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DarkSwap</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header with connect wallet button -->
+  <header>
+    <button class="connect-wallet">Connect Wallet</button>
+  </header>
+
+  <!-- Intro Section -->
+  <section id="intro">
+    <!-- Matrix-like effect -->
+    <canvas class="matrix"></canvas>
+
+    <!-- Central DS letters -->
+    <div class="central-ds" id="central-ds">DS</div>
+
+    <!-- Scroll Down Arrow -->
+    <div class="scroll-down"></div>
+  </section>
+
+  <!-- Interface Selector -->
+  <div class="interface-selector">
+    <button id="swap-selector" class="selector-button active">Swap</button>
+    <button id="buy-selector" class="selector-button">Buy Crypto</button>
+  </div>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <!-- Swap Section -->
+    <div id="swap-section">
+      <section id="swap">
+        <h2>Swap Tokens</h2>
+        <div class="swap-container">
+          <div class="network-selector">
+            <label for="network">Select Network:</label>
+            <select id="network" name="network">
+              <option value="ethereum">Ethereum</option>
+              <option value="binance-smart-chain">Binance Smart Chain</option>
+              <!-- Add more networks as needed -->
+            </select>
+          </div>
+          <div class="token-swap">
+            <div class="token-input">
+              <label for="from-token">From:</label>
+              <input type="text" id="from-token" placeholder="Token Name or Address">
+              <input type="number" id="from-amount" placeholder="Amount">
+            </div>
+            <div class="token-output">
+              <label for="to-token">To:</label>
+              <input type="text" id="to-token" placeholder="Token Name or Address">
+              <input type="number" id="to-amount" placeholder="Amount">
+            </div>
+            <button class="swap-button">Swap</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Buy Section (includes Buy Crypto and Login) -->
+    <div id="buy-section" style="display: none;">
+      <!-- Buy Crypto Section -->
+      <section id="buy-crypto">
+        <h2>Buy Crypto</h2>
+        <div class="buy-crypto-container">
+          <!-- Burger Menu Selector -->
+          <div class="burger-menu">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <div class="menu">
+              <a href="#" class="menu-item">Crypto to Crypto</a>
+              <a href="#" class="menu-item">Fiat to Crypto</a>
+            </div>
+          </div>
+          <!-- Placeholder Content -->
+          <div class="buy-crypto-placeholder">
+            <p>Coming Soon: Buy Crypto with Credit Card or IBAN.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Login Section -->
+      <section id="login">
+        <h2>Login / Register</h2>
+        <div class="login-container">
+          <form>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="#">Register here</a></p>
+          </form>
+          <!-- KYC Placeholder -->
+          <div class="kyc-placeholder">
+            <p>After registration, please complete KYC verification.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 DarkSwap</p>
+  </footer>
+
+  <!-- Include script.js -->
+  <script src="script.js"></script>
+</body>
+
+</html>
