@@ -1,0 +1,436 @@
+/* Reset and base styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #000;
+    color: #00f376;
+    overflow-x: hidden; /* Prevent horizontal scrolling if needed */
+}
+
+/* Header Styles */
+header {
+    width: 100%;
+    background-color: #000;
+    padding: 10px 0; /* Adjusted padding */
+    position: fixed; /* Ensure header stays fixed at top */
+    top: 0;
+    z-index: 1000;
+    text-align: center; /* Center the content */
+    overflow: hidden; /* To hide overflow of pseudo-elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Connect Wallet Button */
+.connect-wallet {
+    background-color: transparent;
+    border: 2px solid #00f376;
+    color: #00f376;
+    padding: 8px 16px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1; /* Bring above pseudo-elements */
+    width: 200px; /* Fixed width for calculation */
+    text-align: center;
+}
+
+.connect-wallet:hover {
+    background-color: #00f376;
+    color: #000;
+}
+
+/* Animation on Header */
+header::before,
+header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 100px); /* Half of button width is 100px */
+    height: 4px; /* Thickness of the line */
+    background: linear-gradient(
+        45deg,
+        #00f376 10%,
+        transparent 10%,
+        transparent 50%,
+        #00f376 50%,
+        #00f376 60%,
+        transparent 60%,
+        transparent 100%
+    );
+    background-size: 40px 40px;
+    animation: animate 0.3s linear infinite;
+    transform: translateY(-50%);
+}
+
+header::before {
+    left: 0;
+}
+
+header::after {
+    right: 0;
+    animation-direction: reverse; /* Reverse the animation for right side */
+}
+
+/* Keyframes for Animation */
+@keyframes animate {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 0;
+    }
+}
+
+/* Intro Section */
+#intro {
+    position: relative;
+    width: 100%;
+    height: 120vh; /* Reduced height to require less scrolling */
+    overflow: hidden;
+}
+
+/* Matrix effect canvas */
+.matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;
+}
+
+/* Central DS letters */
+.central-ds {
+    position: fixed;
+    font-size: 200px;
+    font-weight: bold;
+    color: #00f376;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1); /* Added scale */
+    transition: transform 0.5s ease, filter 1s, opacity 0.5s; /* Adjusted transitions */
+    opacity: 1;
+    z-index: 100;
+    text-shadow: 0 0 10px #00f376, 0 0 20px #00f376; /* Added glow effect */
+}
+
+.central-ds.invert {
+    filter: invert(1);
+}
+
+/* Interface Selector */
+.interface-selector {
+    position: fixed;
+    left: 50%;
+    top: calc(50% - 250px); /* Adjusted to avoid overlap */
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00f376;
+    border-radius: 50px; /* Make it look like a pill */
+    overflow: hidden;
+    animation: blinkBorder 2s infinite; /* Added blinking animation */
+}
+
+.selector-button {
+    flex: 1;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #00f376;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+.selector-button.active {
+    background-color: #00f376;
+    color: #000;
+}
+
+.selector-button:not(:last-child) {
+    border-right: 1px solid #00f376;
+}
+
+/* Scroll Down Arrow */
+.scroll-down {
+    position: fixed;
+    bottom: 300px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    z-index: 100;
+    text-align: center;
+    font-size: 64px; /* Increased font size */
+    line-height: 1;
+    color: #00f376;
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    text-shadow: 0 5px 10px rgba(0, 243, 118, 0.7); /* Added shadow for 3D effect */
+}
+
+.scroll-down::before {
+    content: "↓";
+    white-space: pre;
+    font-weight: bold;
+}
+
+/* Main Content Styles */
+main {
+    opacity: 0;
+    transition: opacity 1s;
+    position: relative;
+    z-index: 100;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main.visible {
+    opacity: 1;
+}
+
+section {
+    margin: 40px 0;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Swap Section Styles */
+.swap-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00f376;
+    padding: 20px;
+    border-radius: 10px;
+    animation: blinkBorder 2s infinite;
+}
+
+.network-selector {
+    margin-bottom: 20px;
+}
+
+.network-selector label,
+.token-swap label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.network-selector select,
+.token-input input,
+.token-output input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #000;
+    border: 1px solid #00f376;
+    color: #00f376;
+    border-radius: 5px;
+}
+
+.swap-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00f376;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.swap-button:hover {
+    background-color: #00c860;
+}
+
+/* Buy Crypto Section Styles */
+.buy-crypto-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00f376;
+    padding: 20px;
+    border-radius: 10px;
+    animation: blinkBorder 2s infinite;
+}
+
+.burger-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.burger-menu .menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #00f376;
+}
+
+.burger-menu input[type="checkbox"] {
+    display: none;
+}
+
+.burger-menu .menu {
+    display: none;
+    position: absolute;
+    background-color: #000;
+    border: 1px solid #00f376;
+    border-radius: 5px;
+    top: 30px;
+    right: 0;
+}
+
+.burger-menu .menu-item {
+    display: block;
+    padding: 10px;
+    color: #00f376;
+    text-decoration: none;
+}
+
+.burger-menu .menu-item:hover {
+    background-color: #00f376;
+    color: #000;
+}
+
+.burger-menu input[type="checkbox"]:checked ~ .menu {
+    display: block;
+}
+
+.buy-crypto-placeholder {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Login Section Styles */
+.login-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00f376;
+    padding: 20px;
+    border-radius: 10px;
+    animation: blinkBorder 2s infinite;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label {
+    margin-bottom: 5px;
+}
+
+.login-container input {
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #000;
+    border: 1px solid #00f376;
+    color: #00f376;
+    border-radius: 5px;
+}
+
+.login-container button {
+    padding: 10px;
+    background-color: #00f376;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-container button:hover {
+    background-color: #00c860;
+}
+
+.login-container p {
+    text-align: center;
+}
+
+.login-container a {
+    color: #00f376;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+.kyc-placeholder {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Blinking Border Animation */
+@keyframes blinkBorder {
+    0%, 100% {
+        border-color: #00f376;
+    }
+    50% {
+        border-color: #000;
+    }
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #00f376;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 100;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    .connect-wallet {
+        width: 150px; /* Adjusted width for smaller screens */
+    }
+
+    header::before,
+    header::after {
+        width: calc(50% - 75px); /* Adjusted for smaller button width */
+    }
+
+    .central-ds {
+        font-size: 150px;
+    }
+
+    .interface-selector {
+        top: calc(50% - 200px); /* Adjusted for smaller screens */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+
+    .central-ds {
+        font-size: 100px;
+    }
+
+    .interface-selector {
+        top: calc(50% - 180px); /* Further adjusted for mobile screens */
+    }
+
+    .connect-wallet {
+        width: 120px; /* Adjusted width for mobile screens */
+    }
+
+    header::before,
+    header::after {
+        width: calc(50% - 60px); /* Adjusted for smaller button width */
+    }
+}
